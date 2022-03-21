@@ -19,13 +19,14 @@ const Searchpanel = ({ param, setParam, users }) => {
             personId: evt.target.value,
           })
         }
-      />
-      <option value={""}>manager</option>
-      {users.map((user) => (
-        <option key={user.id} value={user.id}>
-          {user.name}
-        </option>
-      ))}
+      >
+        <option value={""}>manager</option>
+        {users.map((user) => (
+          <option key={user.id} value={user.id}>
+            {user.name}
+          </option>
+        ))}
+      </select>
     </form>
   );
 };

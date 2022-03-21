@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 export const isFalsy = (value) => (value === 0 ? false : !value);
 // never change the object
 export const cleanObject = (obj) => {
@@ -9,4 +11,20 @@ export const cleanObject = (obj) => {
     }
   });
   return result;
+};
+
+export const useMount = (callback) => {
+  useEffect(() => {
+    callback();
+  }, []);
+};
+export const useDebounce = (value, delay) => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+  useEffect(() => {
+    // Set a timer after each value change
+    const timeout = setTimeout(() => setDebouncedValue(value), delay);
+    // Execute each time after the last useEffect has been processed
+    return () => clearTimeout(timeout);
+  }, [value, delay]);
+  return debouncedValue;
 };
