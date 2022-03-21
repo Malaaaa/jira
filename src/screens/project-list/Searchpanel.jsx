@@ -1,7 +1,4 @@
-import { useState } from "react";
-const Searchpanel = () => {
-  const [param, setParam] = useState({ name: "", personId: "" });
-  const [user, setUser] = useState([]);
+const Searchpanel = ({ param, setParam, users }) => {
   return (
     <form>
       <input
@@ -24,7 +21,7 @@ const Searchpanel = () => {
         }
       />
       <option value={""}>manager</option>
-      {user.map((user) => (
+      {users.map((user) => (
         <option key={user.id} value={user.id}>
           {user.name}
         </option>
