@@ -20,7 +20,7 @@ export const useMount = (callback: () => void) => {
     callback();
   }, []);
 };
-export const useDebounce = (value: unknown, delay?: number): any => {
+export const useDebounce = <v>(value: v, delay?: number) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
   useEffect(() => {
     // Set a timer after each value change
