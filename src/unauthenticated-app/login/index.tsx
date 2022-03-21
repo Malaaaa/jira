@@ -1,7 +1,7 @@
 import { FormEvent } from "react";
 import { useAuth } from "context/auth-context";
 const LoginScreen = () => {
-  const { login, user } = useAuth();
+  const { login } = useAuth();
   // HTMLFormElement extends Element
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -12,11 +12,6 @@ const LoginScreen = () => {
   };
   return (
     <form onSubmit={handleSubmit}>
-      {user ? (
-        <div>
-          success, {user.name} token: {user.token}
-        </div>
-      ) : null}
       <div>
         <label htmlFor="username">username</label>
         <input type="text" id="username" />
