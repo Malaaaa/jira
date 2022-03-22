@@ -18,7 +18,7 @@ export const ProjectListScreen = () => {
     // eslint-disable-next-line
   }, [debouncedParam]);
   useMount(() => {
-    client("projects", { data: cleanObject(debouncedParam) }).then(setList);
+    client("users", { data: cleanObject(debouncedParam) }).then(setUsers);
   });
   return (
     <div>

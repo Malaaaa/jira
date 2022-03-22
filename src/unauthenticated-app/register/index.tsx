@@ -1,27 +1,30 @@
 import { useAuth } from "context/auth-context";
-import { FormEvent } from "react";
+import { Button, Form, Input } from "antd";
 
 export const RegisterScreen = () => {
   const { register } = useAuth();
   // HTMLFormElement extends Element
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // const username = e.currentTarget.element[0].value;
-    const username = (e.currentTarget.elements[0] as HTMLInputElement).value;
-    const password = (e.currentTarget.elements[1] as HTMLInputElement).value;
-    register({ username, password });
+  const handleSubmit = (values: { username: string; password: string }) => {
+    register(values);
   };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="username">username</label>
-        <input type="text" id="username" />
-      </div>
-      <div>
-        <label htmlFor="password">password</label>
-        <input type="password" name="password" id="password" />
-      </div>
-      <button type="submit">register</button>
-    </form>
+    <Form onFinish={handleSubmit}>
+      <Form.Item
+        name="username"
+        rules={[{ required: true, message: "Please enter your username" }]}
+      >
+        <Input placeholder="username" />
+      </Form.Item>
+      <Form.Item
+        name="password"
+        rules={[{ required: true, message: "Please enter your password" }]}
+      >
+        <Input placeholder="password" type="password" />
+      </Form.Item>
+      <Button type="primary" htmlType="submit">
+        Sign up
+      </Button>
+    </Form>
   );
 };
