@@ -20,7 +20,7 @@ const LoginScreen = () => {
       >
         <Input placeholder="password" type="password" />
       </Form.Item>
-      <Button type="primary" htmlType="submit">
+      <Button block type="primary" htmlType="submit">
         Login
       </Button>
     </Form>
