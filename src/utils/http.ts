@@ -44,6 +44,7 @@ export const http = async (
 export const useHttp = () => {
   const { user } = useAuth();
   // TS Operators
+  // Utility type
   return (...[endpoint, config]: Parameters<typeof http>) =>
     http(endpoint, { ...config, token: user?.token });
 };
