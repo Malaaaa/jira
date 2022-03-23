@@ -1,4 +1,5 @@
 // a simple auth provider
+import React from "react";
 
 import { User } from "screens/project-list/Searchpanel";
 
