@@ -22,6 +22,7 @@ export const RegisterScreen = () => {
       >
         <Input placeholder="password" type="password" />
       </Form.Item>
+
       <Button block type="primary" htmlType="submit">
         Sign up
       </Button>

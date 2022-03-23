@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import React from "react";
 export const isVoid = (value: unknown) =>
   value === undefined || value === null || value === "";
 

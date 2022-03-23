@@ -1,32 +1,29 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import List from "./List";
 import SearchPanel from "./Searchpanel";
-import { cleanObject, useDebounce, useMount } from "utils";
-import { useHttp } from "utils/http";
+import { useDebounce } from "utils";
 import styled from "@emotion/styled";
-import React from "react";
+import { Typography } from "antd";
+import { useProjects } from "utils/project";
+import { useUsers } from "utils/user";
 
 export const ProjectListScreen = () => {
   const [param, setParam] = useState({
     name: "",
     personId: "",
   });
-  const [list, setList] = useState([]);
-  const [users, setUsers] = useState([]);
-  const client = useHttp();
   const debouncedParam = useDebounce(param, 200);
-  useEffect(() => {
-    client("projects", { data: cleanObject(debouncedParam) }).then(setList);
-    // eslint-disable-next-line
-  }, [debouncedParam]);
-  useMount(() => {
-    client("users", { data: cleanObject(debouncedParam) }).then(setUsers);
-  });
+  const { isLoading, error, data: list } = useProjects(debouncedParam);
+  const { data: users } = useUsers();
+
   return (
     <Container>
       <h1>Project List</h1>
-      <SearchPanel users={users} param={param} setParam={setParam} />
-      <List list={list} users={users} />
+      <SearchPanel users={users || []} param={param} setParam={setParam} />
+      {error ? (
+        <Typography.Text type={"danger"}>{error.message}</Typography.Text>
+      ) : null}
+      <List loading={isLoading} users={users || []} dataSource={list || []} />
     </Container>
   );
 };

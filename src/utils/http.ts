@@ -1,7 +1,6 @@
 import { useAuth } from "context/auth-context";
 import { stringify } from "qs";
 import * as auth from "auth-provider";
-import React from "react";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
