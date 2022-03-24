@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 export const isVoid = (value: unknown) =>
   value === undefined || value === null || value === "";
 
@@ -44,8 +44,9 @@ export const useDebounce = <v>(value: v, delay?: number) => {
 };
 
 export const useDocumentTitle = (title: string, keepOnUnmount = true) => {
-  const oldTitle = document.title;
-
+  const oldTitle = useRef(document.title).current;
+  // When the page loading: old title
+  // After loading: new title
   useEffect(() => {
     document.title = title;
   }, [title]);
@@ -56,5 +57,5 @@ export const useDocumentTitle = (title: string, keepOnUnmount = true) => {
         document.title = oldTitle;
       }
     };
-  }, []);
+  }, [keepOnUnmount, oldTitle]);
 };
