@@ -1,12 +1,22 @@
 import { useAuth } from "context/auth-context";
-import React from "react";
+import { Form, Input } from "antd";
+import { LongButton } from "unauthenticated-app/index";
+import { useAsync } from "utils/use-async";
 
-import { Button, Form, Input } from "antd";
-const LoginScreen = () => {
+const LoginScreen = ({ onError }: { onError: (error: Error) => void }) => {
   const { login } = useAuth();
+  const { run, isLoading } = useAsync(undefined, { throwOnError: true });
   // HTMLFormElement extends Element
-  const handleSubmit = (values: { username: string; password: string }) => {
-    login(values);
+  const handleSubmit = async (values: {
+    username: string;
+    password: string;
+  }) => {
+    try {
+      await run(login(values));
+    } catch (e) {
+      console.log(e, "error");
+      onError(e);
+    }
   };
   return (
     <Form onFinish={handleSubmit}>
@@ -22,9 +32,9 @@ const LoginScreen = () => {
       >
         <Input placeholder="password" type="password" />
       </Form.Item>
-      <Button block type="primary" htmlType="submit">
+      <LongButton loading={isLoading} htmlType={"submit"} type={"primary"}>
         Login
-      </Button>
+      </LongButton>
     </Form>
   );
 };
