@@ -53,7 +53,6 @@ export const useAsync = <D>(
       })
       .catch((error) => {
         setError(error);
-        console.log(error);
         if (config.throwOnError) return Promise.reject(error);
         return error;
       });
