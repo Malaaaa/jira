@@ -4,7 +4,7 @@ import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
 import styled from "@emotion/styled";
 import { Row } from "components/lib";
 import { Button, Dropdown, Menu } from "antd";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import ProjectScreen from "screens/project";
 import { resetRoute } from "utils";
 
@@ -15,7 +15,7 @@ export const AuthenticatedApp = () => {
       <Main>
         <Routes>
           <Route path={"projects"} element={<ProjectListScreen />} />
-          <Route path={"projects:projectId/*"} element={<ProjectScreen />} />
+          <Route path={"projects/:projectId/*"} element={<ProjectScreen />} />
           <Route index element={<ProjectListScreen />} />
         </Routes>
       </Main>
