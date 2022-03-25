@@ -2,6 +2,7 @@ import { Table } from "antd";
 import { User } from "./Searchpanel";
 import dayjs from "dayjs";
 import { TableProps } from "antd/es/table";
+import { Link } from "react-router-dom";
 export interface Project {
   id: string;
   name: string;
@@ -21,8 +22,10 @@ const List = ({ users, ...props }: ListProps) => {
       columns={[
         {
           title: "name",
-          dataIndex: "name",
           sorter: (a, b) => a.name.localeCompare(b.name),
+          render(value, project) {
+            return <Link to={String(project.id)}>{project.name}</Link>;
+          },
         },
         {
           title: "department",

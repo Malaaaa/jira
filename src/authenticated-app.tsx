@@ -4,38 +4,19 @@ import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
 import styled from "@emotion/styled";
 import { Row } from "components/lib";
 import { Button, Dropdown, Menu } from "antd";
-import React from "react";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ProjectScreen } from "screens/project";
 export const AuthenticatedApp = () => {
-  const { logout, user } = useAuth();
   return (
     <Container>
-      <Header between={true}>
-        <HeaderLeft gap={true}>
-          <SoftwareLogo width={"18rem"} color={"rgb(38, 132, 255)"} />
-          <HeaderItem>Project</HeaderItem>
-          <HeaderItem>User</HeaderItem>
-        </HeaderLeft>
-        <HeaderRight>
-          <Dropdown
-            overlay={
-              <Menu>
-                <Menu.Item key={"logout"}>
-                  <Button type="link" onClick={logout}>
-                    Logout
-                  </Button>
-                </Menu.Item>
-              </Menu>
-            }
-          >
-            <Button type="link" onClick={(e) => e.preventDefault()}>
-              Hi, {user?.name}
-            </Button>
-          </Dropdown>{" "}
-        </HeaderRight>
-      </Header>
+      <PageHeader />
       <Main>
-        <ProjectListScreen />
+        <BrowserRouter>
+          <Routes>
+            <Route path={"/"} element={<ProjectListScreen />} />
+            <Route path={"/:projectId/*"} element={<ProjectScreen />} />
+          </Routes>
+        </BrowserRouter>{" "}
       </Main>
     </Container>
   );
@@ -60,3 +41,34 @@ const Header = styled(Row)`
 const HeaderLeft = styled(Row)``;
 const HeaderRight = styled.div``;
 const Main = styled.main``;
+
+function PageHeader() {
+  const { logout, user } = useAuth();
+
+  return (
+    <Header between={true}>
+      <HeaderLeft gap={true}>
+        <SoftwareLogo width={"18rem"} color={"rgb(38, 132, 255)"} />
+        <HeaderItem>Project</HeaderItem>
+        <HeaderItem>User</HeaderItem>
+      </HeaderLeft>
+      <HeaderRight>
+        <Dropdown
+          overlay={
+            <Menu>
+              <Menu.Item key={"logout"}>
+                <Button type="link" onClick={logout}>
+                  Logout
+                </Button>
+              </Menu.Item>
+            </Menu>
+          }
+        >
+          <Button type="link" onClick={(e) => e.preventDefault()}>
+            Hi, {user?.name}
+          </Button>
+        </Dropdown>{" "}
+      </HeaderRight>
+    </Header>
+  );
+}
