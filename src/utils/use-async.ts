@@ -26,6 +26,7 @@ export const useAsync = <D>(
     ...initialState,
   });
 
+  const [retry, setRetry] = useState(() => () => {});
   const setData = (data: D) =>
     setState({
       data,
@@ -41,10 +42,18 @@ export const useAsync = <D>(
     });
 
   // `run` Used to trigger asynchronous requests
-  const run = (promise: Promise<D>) => {
+  const run = (
+    promise: Promise<D>,
+    runConfig?: { retry: () => Promise<D> }
+  ) => {
     if (!promise || !promise.then) {
       throw new Error("please set Promise type data");
     }
+    setRetry(() => () => {
+      if (runConfig?.retry) {
+        run(runConfig?.retry(), runConfig);
+      }
+    });
     setState({ ...state, stat: "loading" });
     return promise
       .then((data) => {
@@ -66,6 +75,7 @@ export const useAsync = <D>(
     run,
     setData,
     setError,
+    retry,
     ...state,
   };
 };
