@@ -12,7 +12,7 @@ export const ProjectModal = (props: {
       width={"100%"}
     >
       <h1>Project Modal</h1>
-      <Button onClick={props.onClose}>关闭</Button>
+      <Button onClick={props.onClose}>Close</Button>
     </Drawer>
   );
 };
