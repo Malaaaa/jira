@@ -2,9 +2,11 @@ import { useAuth } from "context/auth-context";
 import { Form, Input } from "antd";
 import { LongButton } from "unauthenticated-app/index";
 import { useAsync } from "utils/use-async";
+import { useDispatch } from "react-redux";
 
 const LoginScreen = ({ onError }: { onError: (error: Error) => void }) => {
   const { login } = useAuth();
+  const dispatch = useDispatch();
   const { run, isLoading } = useAsync(undefined, { throwOnError: true });
   // HTMLFormElement extends Element
   const handleSubmit = async (values: {
