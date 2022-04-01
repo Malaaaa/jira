@@ -6,8 +6,11 @@ import { Typography } from "antd";
 import { useProjects } from "utils/project";
 import { useUsers } from "utils/user";
 import { useProjectsSearchParams } from "screens/project-list/util";
-
-export const ProjectListScreen = (props: { projectButton: JSX.Element }) => {
+import { ButtonNoPadding, Row } from "components/lib";
+import { useDispatch } from "react-redux";
+import { projectListActions } from "screens/project-list/project-list.slice";
+import { store } from "store";
+export const ProjectListScreen = () => {
   useDocumentTitle("Project list", false);
   const [param, setParam] = useProjectsSearchParams();
   const {
@@ -17,16 +20,22 @@ export const ProjectListScreen = (props: { projectButton: JSX.Element }) => {
     retry,
   } = useProjects(useDebounce(param, 200));
   const { data: users } = useUsers();
+  const dispatch = useDispatch();
+  console.log(store.getState());
   return (
     <Container>
       <h1>Project List</h1>
-      {props.projectButton}
+      <ButtonNoPadding
+        onClick={() => dispatch(projectListActions.openProjectModal())}
+        type={"link"}
+      >
+        Create project
+      </ButtonNoPadding>
       <SearchPanel users={users || []} param={param} setParam={setParam} />
       {error ? (
         <Typography.Text type={"danger"}>{error.message}</Typography.Text>
       ) : null}
       <List
-        projectButton={props.projectButton}
         refresh={retry}
         loading={isLoading}
         users={users || []}
