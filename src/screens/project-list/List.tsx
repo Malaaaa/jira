@@ -17,7 +17,6 @@ export interface Project {
 interface ListProps extends TableProps<Project> {
   users: User[];
   refresh?: () => void;
-  projectButton: JSX.Element;
 }
 const List = ({ users, ...props }: ListProps) => {
   const { mutate } = useEditProject();
@@ -81,7 +80,7 @@ const List = ({ users, ...props }: ListProps) => {
               <Dropdown
                 overlay={
                   <Menu>
-                    <Menu.Item key={"edit"}>{props.projectButton}</Menu.Item>
+                    <Menu.Item key={"edit"}>Edit</Menu.Item>
                   </Menu>
                 }
               >

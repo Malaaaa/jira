@@ -7,7 +7,7 @@ import { useProjects } from "utils/project";
 import { useUsers } from "utils/user";
 import { useProjectsSearchParams } from "screens/project-list/util";
 
-export const ProjectListScreen = (props: { projectButton: JSX.Element }) => {
+export const ProjectListScreen = () => {
   useDocumentTitle("Project list", false);
   const [param, setParam] = useProjectsSearchParams();
   const {
@@ -20,13 +20,11 @@ export const ProjectListScreen = (props: { projectButton: JSX.Element }) => {
   return (
     <Container>
       <h1>Project List</h1>
-      {props.projectButton}
       <SearchPanel users={users || []} param={param} setParam={setParam} />
       {error ? (
         <Typography.Text type={"danger"}>{error.message}</Typography.Text>
       ) : null}
       <List
-        projectButton={props.projectButton}
         refresh={retry}
         loading={isLoading}
         users={users || []}
