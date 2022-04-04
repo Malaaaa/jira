@@ -1,13 +1,13 @@
 import { useState } from "react";
 import LoginScreen from "./login";
 import RegisterScreen from "./register";
-import { Button, Card, Divider, Typography } from "antd";
+import { Button, Card, Divider } from "antd";
 import styled from "@emotion/styled";
 import logo from "assets/logo.svg";
 import left from "assets/left.svg";
 import right from "assets/right.svg";
 import { useDocumentTitle } from "utils";
-
+import { ErrorBox } from "components/lib";
 export const UnauthenticatedApp = () => {
   const [isRegister, setIsRegister] = useState(false);
   const [error, setError] = useState<Error | null>(null);
@@ -18,9 +18,7 @@ export const UnauthenticatedApp = () => {
       <Background />
       <ShadowCard>
         <Title>{isRegister ? "Please Sign up" : "Plese Log in"}</Title>
-        {error ? (
-          <Typography.Text type={"danger"}>{error.message}</Typography.Text>
-        ) : null}
+        {error ? <ErrorBox error={error}></ErrorBox> : null}
         {isRegister ? (
           <RegisterScreen onError={setError} />
         ) : (
