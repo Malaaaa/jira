@@ -94,9 +94,9 @@ const More = ({ project }: { project: Project }) => {
   const { mutate: deleteProject } = useDeleteProject(useProjectsQueryKey());
   const confirmDeleteProject = (id: number) => {
     Modal.confirm({
-      title: "确定删除这个项目吗?",
-      content: "点击确定删除",
-      okText: "确定",
+      title: "Are you sure you want to delete this item??",
+      content: "Click OK to delete",
+      okText: "OK",
       onOk() {
         deleteProject({ id });
       },
