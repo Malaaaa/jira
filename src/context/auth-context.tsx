@@ -41,14 +41,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     run,
     setData: setUser,
   } = useAsync<User | null>();
-  const queryClint = useQueryClient();
+  const queryClient = useQueryClient();
   // const login = (form: AuthForm) => auth.login(form).then(user => setUser(user)); point free
   const login = (form: AuthForm) => auth.login(form).then(setUser);
   const register = (form: AuthForm) => auth.register(form).then(setUser);
   const logout = () =>
     auth.logout().then(() => {
       setUser(null);
-      queryClint.clear();
+      queryClient.clear();
     });
   useMount(() => {
     run(bootstarpUser());
