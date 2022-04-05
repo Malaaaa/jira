@@ -1,7 +1,7 @@
 import { useLocation } from "react-router";
 import { useProject } from "utils/project";
-import { useBoard } from "utils/board";
-import { useTasks } from "utils/task";
+import { useUrlQueryParam } from "utils/url";
+import { useMemo } from "react";
 
 export const useProjectIdInUrl = () => {
   const { pathname } = useLocation();
@@ -11,8 +11,27 @@ export const useProjectIdInUrl = () => {
 
 export const useProjectInUrl = () => useProject(useProjectIdInUrl());
 
-export const useBoardInProject = () =>
-  useBoard({ projectId: useProjectIdInUrl() });
+export const useBoardSearchParams = () => ({ projectId: useProjectIdInUrl() });
 
-export const useTasksInProject = () =>
-  useTasks({ projectId: useProjectIdInUrl() });
+export const useBoardQueryKey = () => ["kanbans", useBoardSearchParams()];
+
+export const useTasksSearchParams = () => {
+  const [param, setParam] = useUrlQueryParam([
+    "name",
+    "typeId",
+    "processorId",
+    "tagId",
+  ]);
+  const projectId = useProjectIdInUrl();
+  return useMemo(
+    () => ({
+      projectId,
+      typeId: Number(param.typeId) || undefined,
+      processorId: Number(param.processorId) || undefined,
+      tagId: Number(param.tagId) || undefined,
+      name: param.name,
+    }),
+    [projectId, param]
+  );
+};
+export const useTasksQueryKey = () => ["tasks", useTasksSearchParams()];

@@ -1,5 +1,5 @@
-import List from "./List";
-import SearchPanel from "./Searchpanel";
+import List from "./list";
+import SearchPanel from "./search-panel";
 import { useDebounce, useDocumentTitle } from "utils";
 import styled from "@emotion/styled";
 import { useProjects } from "utils/project";

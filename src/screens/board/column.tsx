@@ -1,11 +1,12 @@
 import React from "react";
 import { Board } from "types/board";
-import { useTasksInProject } from "screens/board/util";
+import { useTasksSearchParams } from "./util";
 import { useTaskTypes } from "utils/task-type";
 import taskIcon from "assets/task.svg";
 import bugIcon from "assets/bug.svg";
 import styled from "@emotion/styled";
 import { Card } from "antd";
+import { useTasks } from "utils/task";
 
 const TaskTypeIcon = ({ id }: { id: number }) => {
   const { data: taskTypes } = useTaskTypes();
@@ -13,10 +14,10 @@ const TaskTypeIcon = ({ id }: { id: number }) => {
   if (!name) {
     return null;
   }
-  return <img src={name === "task" ? taskIcon : bugIcon} />;
+  return <img src={name === "task" ? taskIcon : bugIcon} alt={""} />;
 };
 export const BoardColumn = ({ board }: { board: Board }) => {
-  const { data: allTasks } = useTasksInProject();
+  const { data: allTasks } = useTasks(useTasksSearchParams());
   const tasks = allTasks?.filter((task) => task.kanbanId === board.id);
   return (
     <Container>
