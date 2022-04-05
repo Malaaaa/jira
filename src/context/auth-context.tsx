@@ -1,6 +1,6 @@
 import React, { createContext, ReactNode, useContext } from "react";
 import * as auth from "auth-provider";
-import { User } from "types/User";
+import { User } from "types/user";
 
 import { http } from "utils/http";
 import { useMount } from "utils";

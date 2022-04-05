@@ -1,6 +1,6 @@
 // a simple auth provider
 
-import { User } from "types/User";
+import { User } from "types/user";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
