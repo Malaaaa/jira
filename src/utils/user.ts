@@ -1,4 +1,4 @@
-import { User } from "screens/project-list/Searchpanel";
+import { User } from "types/User";
 import { useHttp } from "utils/http";
 import { useAsync } from "utils/use-async";
 import { useEffect } from "react";

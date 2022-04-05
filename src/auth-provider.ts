@@ -1,6 +1,6 @@
 // a simple auth provider
 
-import { User } from "screens/project-list/Searchpanel";
+import { User } from "types/User";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
