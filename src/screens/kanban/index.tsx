@@ -1,4 +1,6 @@
 import { useDocumentTitle } from "utils";
+import React from "react";
+
 import {
   useKanbanQueryKey,
   useKanbanSearchParams,
