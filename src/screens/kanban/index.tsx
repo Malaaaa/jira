@@ -22,7 +22,7 @@ const KanbanScreen = () => {
   useDocumentTitle("kanban List");
 
   const { data: currentProject } = useProjectInUrl();
-  const { data: kanbans, isLoading: kanbanIsLoading } = useKanbans(
+  const { data: kanbans, isLoading: kanbanIsLoading } = useKanban(
     useKanbanSearchParams()
   );
   const { isLoading: taskIsLoading } = useTasks(useTasksSearchParams());

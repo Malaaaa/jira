@@ -1,7 +1,7 @@
 import React from "react";
 import { Kanban } from "types/kanban";
 import {
-  useKanbansQueryKey,
+  useKanbanQueryKey,
   useTasksModal,
   useTasksSearchParams,
 } from "screens/kanban/util";
@@ -53,7 +53,7 @@ export const KanbanColumn = ({ kanban }: { kanban: Kanban }) => {
       </Row>
       <TasksContainer>
         {tasks?.map((task) => (
-          <TaskCard task={task} />
+          <TaskCard task={task} key={task.id} />
         ))}
         <CreateTask kanbanId={kanban.id} />
       </TasksContainer>
@@ -61,7 +61,7 @@ export const KanbanColumn = ({ kanban }: { kanban: Kanban }) => {
   );
 };
 const More = ({ kanban }: { kanban: Kanban }) => {
-  const { mutateAsync } = useDeleteKanban(useKanbansQueryKey());
+  const { mutateAsync } = useDeleteKanban(useKanbanQueryKey());
   const startDelete = () => {
     Modal.confirm({
       okText: "confirm",
@@ -99,7 +99,7 @@ export const Container = styled.div`
 `;
 
 const TasksContainer = styled.div`
-  overflow: scroll;
+  overflow: hidden;
   flex: 1;
   ::-webkit-scrollbar {
     display: none;

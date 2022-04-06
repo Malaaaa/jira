@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useKanbanSearchParams, useProjectIdInUrl } from "screens/kanban/util";
+import { useKanbanQueryKey, useProjectIdInUrl } from "screens/kanban/util";
 import { useAddKanban } from "utils/kanban";
 import { Input } from "antd";
 import { Container } from "screens/kanban/kanban-column";
@@ -7,7 +7,7 @@ import { Container } from "screens/kanban/kanban-column";
 export const CreateKanban = () => {
   const [name, setName] = useState("");
   const projectId = useProjectIdInUrl();
-  const { mutateAsync: addKanban } = useAddKanban(useKanbanSearchParams());
+  const { mutateAsync: addKanban } = useAddKanban(useKanbanQueryKey());
 
   const submit = async () => {
     await addKanban({ name, projectId });
