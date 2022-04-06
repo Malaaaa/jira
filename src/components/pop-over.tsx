@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { useProjectModal } from "screens/project-list/util";
 import { useProjects } from "utils/project";
 import { ButtonNoPadding } from "./lib";
+import React from "react";
 
 export const ProjectPopover = () => {
   const { open } = useProjectModal();

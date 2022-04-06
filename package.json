@@ -34,10 +34,6 @@
     "deploy": "gh-pages -d build -r https://github.com/malaaaaaa/malaaaaaa.github.io.git -b master"
   },
   "eslintConfig": {
-    "rules": {
-      "react/jsx-uses-react": "off",
-      "react/react-in-jsx-scope": "off"
-    },
     "extends": [
       "react-app",
       "react-app/jest",

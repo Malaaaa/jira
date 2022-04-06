@@ -1,4 +1,6 @@
 import { useAuth } from "context/auth-context";
+import React from "react";
+
 import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
 import styled from "@emotion/styled";
 import { Button, Dropdown, Menu } from "antd";
