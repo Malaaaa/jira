@@ -1,5 +1,5 @@
 import { Dropdown, Menu, Modal, Table } from "antd";
-import { User } from "../../types/User";
+import { User } from "../../types/user";
 import dayjs from "dayjs";
 import { TableProps } from "antd/es/table";
 import { Pin } from "components/pin";
@@ -10,7 +10,7 @@ import {
   useProjectModal,
   useProjectsQueryKey,
 } from "screens/project-list/util";
-import { Project } from "../../types/Project";
+import { Project } from "../../types/project";
 
 interface ListProps extends TableProps<Project> {
   users: User[];

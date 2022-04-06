@@ -1,5 +1,5 @@
 import { Link, Route, Routes, useLocation } from "react-router-dom";
-import BoardScreen from "screens/board";
+import KanbanScreen from "screens/kanban";
 import EpicScreen from "screens/epic";
 import styled from "@emotion/styled";
 import { Menu } from "antd";
@@ -26,10 +26,10 @@ const ProjectScreen = () => {
       <Main>
         <Routes>
           {/*projects/:projectId/board*/}
-          <Route path={"board"} element={<BoardScreen />} />
+          <Route path={"board"} element={<KanbanScreen />} />
           {/*projects/:projectId/epic*/}
           <Route path={"epic"} element={<EpicScreen />} />
-          <Route index element={<BoardScreen />} />
+          <Route index element={<KanbanScreen />} />
         </Routes>
       </Main>
     </Container>
@@ -41,6 +41,7 @@ export default ProjectScreen;
 const Aside = styled.aside`
   background-color: rgb(244, 245, 247);
   display: flex;
+  overflow: hidden;
 `;
 
 const Main = styled.div`
