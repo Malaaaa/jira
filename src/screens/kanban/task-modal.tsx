@@ -32,9 +32,9 @@ export const TaskModal = () => {
   const startDelete = () => {
     close();
     Modal.confirm({
-      okText: "确定",
-      cancelText: "取消",
-      title: "确定删除任务吗",
+      okText: "OK",
+      cancelText: "cancle",
+      title: "Sure to delete the task?",
       onOk() {
         return deleteTask({ id: Number(editingTaskId) });
       },

@@ -116,7 +116,7 @@ export const useDragEnd = () => {
 
 export const ColumnsContainer = styled("div")`
   display: flex;
-  overflow-x: scroll;
+  overflow: scroll;
   flex: 1;
 `;
 export default KanbanScreen;
