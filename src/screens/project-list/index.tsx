@@ -4,7 +4,7 @@ import { useDebounce, useDocumentTitle } from "utils";
 import { useProjects } from "utils/project";
 import { useUsers } from "utils/user";
 import { useProjectsSearchParams } from "screens/project-list/util";
-import { ErrorBox, ScreenContainer } from "components/lib";
+import { ErrorBox, Row, ScreenContainer } from "components/lib";
 export const ProjectListScreen = () => {
   useDocumentTitle("Project list", false);
   const [param, setParam] = useProjectsSearchParams();
@@ -12,7 +12,9 @@ export const ProjectListScreen = () => {
   const { data: users } = useUsers();
   return (
     <ScreenContainer>
-      <h1>Project List</h1>
+      <Row marginBottom={2} between={true}>
+        <h1>Project List</h1>
+      </Row>
       <SearchPanel users={users || []} param={param} setParam={setParam} />
       <ErrorBox error={error} />
       <List loading={isLoading} users={users || []} dataSource={list || []} />
